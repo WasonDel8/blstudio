@@ -110,6 +110,26 @@ document.addEventListener('DOMContentLoaded', () => {
         await showPage(targetPage ? pageId : 'inicio');
     }
 
+    // --- FUNCIÓN AUXILIAR PARA PRECARGAR IMÁGENES ---
+    // Esta función toma un array de URLs de imágenes y devuelve una promesa
+    // que se resuelve cuando todas las imágenes se han cargado (o han fallado).
+    function preloadImages(urls) {
+        if (!urls || urls.length === 0) {
+            return Promise.resolve();
+        }
+
+        const promises = urls.map(url => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = resolve;
+                img.onerror = resolve; // Resolvemos incluso en error para no bloquear la UI.
+                img.src = url;
+            });
+        });
+
+        return Promise.all(promises);
+    }
+
     // --- 2. MANEJADORES DE EVENTOS ---
     // Usamos delegación de eventos en el header para manejar clics en enlaces estáticos y dinámicos
     document.querySelector('header').addEventListener('click', (e) => {
@@ -226,7 +246,17 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
 
         try {
             const response = await fetch(`data/${category}.json`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${category}.json`);
+            }
             const services = await response.json();
+
+            // Precarga las imágenes del catálogo antes de mostrar las tarjetas.
+            // Esto asegura que la pantalla de carga espere a que las imágenes estén listas.
+            const imageUrls = services
+                .map(service => (service.images && service.images.length > 0) ? service.images[0] : null)
+                .filter(Boolean); // filter(Boolean) elimina los valores nulos/undefined
+            await preloadImages(imageUrls);
 
             let html = '';
             services.forEach(service => {
@@ -291,19 +321,17 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
             }
         }
 
-        if (target.classList.contains('gallery-button')) {
-            const images = target.dataset.images.split(',');
-            if (images.length > 0 && images[0]) {
-                // 1. Mostrar pantalla de carga
-                loadingOverlay.classList.remove('hidden');
-
-                // 2. Esperar 2 segundos para simular la carga
-                setTimeout(() => {
-                    // 3. Ocultar la carga y abrir el modal
+        // Lógica para el botón de galería con precarga real de imágenes
+        if (target.classList.contains('gallery-button') && !target.disabled) {
+            (async () => {
+                const images = target.dataset.images.split(',');
+                if (images.length > 0 && images[0]) {
+                    loadingOverlay.classList.remove('hidden');
+                    await preloadImages(images); // Espera a que TODAS las imágenes de la galería carguen
                     loadingOverlay.classList.add('hidden');
                     openModal(images);
-                }, 2000);
-            }
+                }
+            })();
         }
     });
 
@@ -392,7 +420,7 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
                 allResults = allResults.concat(resultsWithCategory);
             });
 
-            renderSearchResults(allResults, term);
+            await renderSearchResults(allResults, term);
 
         } catch (error) {
             console.error("Error durante la búsqueda:", error);
@@ -402,13 +430,20 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
         }
     }
 
-    function renderSearchResults(results, term) {
+    async function renderSearchResults(results, term) {
         searchResultsHeader.innerHTML = `<h2 class="text-4xl font-extrabold text-gray-900">Resultados para: <span class="primary-color">${term}</span></h2>`;
 
         if (results.length === 0) {
             searchResultsContainer.innerHTML = `<p class="text-xl text-gray-500 col-span-full">No se encontraron diseños que coincidan con tu búsqueda.</p>`;
             return;
         }
+
+        // Precarga las imágenes de los resultados antes de mostrar las tarjetas.
+        const imageUrls = results
+            .map(service => (service.images && service.images.length > 0) ? service.images[0] : null)
+            .filter(Boolean);
+
+        await preloadImages(imageUrls);
 
         let html = '';
         results.forEach(service => {
@@ -524,4 +559,3 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
 
     initializeSite();
 });
-
