@@ -13,7 +13,7 @@
         "id": 2,
         "title": "Efecto Rimel",
         "description": "Descripción para el servicio de volumen clásico.",
-        "price": "$26500",
+        "price": "$25000",
         "images": [
             "/assets/extensiones/2/1.webp"
         ]
@@ -37,4 +37,5 @@
             "/assets/extensiones/6/1.webp"
         ]
     }
+
 ]
