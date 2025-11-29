@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "title": "Gelificado de Uñas",
+        "description": "Dale un toque brillante y duradero a tus uñas con gel.",
+        "price": "$5000",
+        "images": [
+            "/assets/uñas/1/1.webp",
+            "/assets/uñas/1/2.webp",
+            "/assets/uñas/1/3.webp",
+            "/assets/uñas/1/4.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Uñas Esculpidas",
+        "description": "Añade largo y forma a tus uñas con un acabado profesional.",
+        "price": "$8000",
+        "images": [
+            "/assets/uñas/2/1.webp",
+            "/assets/uñas/2/2.webp",
+            "/assets/uñas/2/3.webp"
+        ]
+    }
+]

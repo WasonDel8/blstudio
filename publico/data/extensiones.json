@@ -1,0 +1,40 @@
+
+[
+    {
+        "id": 1,
+        "title": "Clásica",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$24000",
+        "images": [
+            "/assets/extensiones/1/1.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Efecto Rimel",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$26500",
+        "images": [
+            "/assets/extensiones/2/1.webp"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Volumen rendado",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$26500",
+        "images": [
+            "/assets/extensiones/3/1.webp",
+            "/assets/extensiones/3/2.webp"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Volumen hollywood",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$32000",
+        "images": [
+            "/assets/extensiones/6/1.webp"
+        ]
+    }
+]

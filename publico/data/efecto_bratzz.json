@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "title": "Bratzz Efecto Kitty",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$26500",
+        "images": [
+            "/assets/efecto-bratzz/1/1.webp"
+        ]
+    }
+]

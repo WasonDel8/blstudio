@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Perfilado de Cejas con color",
+        "description": "Técnica semipermanente para rellenar y definir la forma con trazos hiperrealistas.",
+        "price": "$10000",
+        "images": [
+            "/assets/cejas/1/1.webp",
+            "/assets/cejas/1/2.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Perfilado de Cejas",
+        "description": "Efecto sombreado tipo maquillaje, ideal para pieles grasas o cejas con poca densidad.",
+        "price": "$8500",
+        "images": [
+            "/assets/cejas/2/1.webp",
+            "/assets/cejas/2/2.webp"
+        ]
+    }
+]

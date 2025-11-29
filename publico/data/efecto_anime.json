@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "title": "Anime",
+        "description": "Descripción para el servicio de efecto anime intenso.",
+        "price": "$33000",
+        "images": [
+            "/assets/efecto-anime/1/1.webp",
+            "/assets/efecto-anime/1/2.webp",
+            "/assets/efecto-anime/1/3.webp",
+            "/assets/efecto-anime/1/4.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Manga",
+        "description": "Descripción para el servicio de efecto anime plus.",
+        "price": "$33000",
+        "images": [
+            "/assets/efecto-anime/2/1.webp"
+        ]
+    }
+]

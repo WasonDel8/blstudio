@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Diseño | Estudio de Belleza Personalizado</title>
+    <!-- Carga de Tailwind CSS para un diseño limpio y responsivo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="assets/logo-s.png" type="image/x-icon">
+</head>
+<body class="antialiased">
+
+    <!-- 1. Barra de Navegación Completa (Header) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo/Nombre de la Marca -->
+                <a href="#" data-page-id="inicio" class="nav-link text-4xl script-font primary-color transition duration-150">
+                    BL-studio
+                </a>
+                
+                <!-- Menú Principal (Escritorio) -->
+                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-lg font-medium">
+                    <a href="#" data-page-id="inicio" class="nav-link text-gray-900 hover:text-accent transition duration-150 py-1">INICIO</a>
+                    <a href="#" data-page-id="nosotros" class="nav-link text-gray-900 hover:text-accent transition duration-150 py-1">SOBRE MÍ</a>
+                    <!-- Nuevas Categorías -->
+                    <div class="dropdown">
+                        <button id="designs-dropdown-button" class="text-gray-900 hover:text-accent transition duration-150 py-1 flex items-center font-bold">
+                            DISEÑOS
+                            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="designs-dropdown-menu" class="dropdown-menu hidden absolute z-10 w-60 mt-2 rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 py-2">
+                            <!-- El menú de diseños de escritorio se generará aquí -->
+                        </div>
+                    </div>
+
+                    <a href="#" data-page-id="contacto" class="nav-link text-gray-900 hover:text-accent transition duration-150 py-1">RESERVAR CITA</a>
+                </nav>
+
+                <!-- Botón de Menú Móvil (Hamburguesa) -->
+                <button id="menu-button" class="md:hidden primary-color focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition duration-150">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Móvil (Plegable) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <!-- Buscador en Móvil -->
+                <form class="search-form flex p-2">
+                    <input type="search" class="search-input w-full p-2 border border-gray-300 rounded-l-lg focus:primary-border focus:ring-1 focus:ring-teal-500" placeholder="Buscar diseño...">
+                    <button type="submit" class="search-button p-2 rounded-r-lg">Buscar</button>
+                </form>
+
+                <a href="#" data-page-id="inicio" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-accent hover:text-gray-800 transition duration-150">INICIO</a>
+                <a href="#" data-page-id="nosotros" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-accent hover:text-gray-800 transition duration-150">SOBRE MÍ</a>
+
+                <p class="px-3 pt-2 text-sm font-bold text-gray-500 uppercase">NUESTROS DISEÑOS:</p>
+                <div id="mobile-designs-menu">
+                    <!-- El menú de diseños móvil se generará aquí -->
+                </div>
+                <a href="#" data-page-id="contacto" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-accent hover:text-gray-800 transition duration-150">RESERVAR CITA</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Buscador en Escritorio (Fuera del menú principal para mejor alineación) -->
+    <div class="bg-gray-100 py-2">
+        <form class="search-form max-w-xl mx-auto flex">
+            <input type="search" class="search-input w-full p-2 border border-gray-300 rounded-l-lg focus:primary-border focus:ring-1 focus:ring-teal-500" placeholder="Buscar por palabra clave (ej: 'Clásico', 'Foxy', 'Gel')">
+            <button type="submit" class="search-button px-4 rounded-r-lg font-semibold">Buscar</button>
+        </form>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DE PÁGINAS -->
+    <main id="page-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- =============================================== -->
+        <!-- 2. PÁGINA: INICIO (DESCRIPCIÓN Y CONTACTO) -->
+        <!-- =============================================== -->
+        <section data-page="inicio" class="page-content bg-white rounded-xl shadow-2xl p-8 sm:p-12 mb-12 border-4 primary-border border-dashed">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 primary-color">
+                Diseñando la Mirada que Siempre Soñaste.
+            </h1>
+            <p class="text-xl text-gray-600 mb-6">
+                <span class="font-bold text-accent">¡Hola!</span> Soy tu especialista en diseño de cejas y extensiones de pestañas. Mi enfoque es la belleza personalizada, asegurando que cada diseño resalte tu estructura facial única. Utilizo técnicas avanzadas y productos de la más alta calidad para resultados naturales y duraderos.
+            </p>
+            
+            <!-- Bloque de Contacto Destacado (Número Solicitado) -->
+            <div class="bg-gray-50 border-l-4 border-accent p-6 rounded-lg shadow-inner mt-8">
+                <p class="font-bold text-lg mb-2 primary-color uppercase">¡Agenda tu Cita!</p>
+                <p id="whatsapp-number-display" class="text-3xl sm:text-4xl font-extrabold text-accent mb-2">
+                    <!-- Este contenido se llenará con JavaScript -->
+                </p>
+                <p class="text-gray-500">Haz clic para enviarme un mensaje directo y consulta por mis horarios disponibles.</p>
+                <!-- Este botón ahora redirige a la pestaña de reserva para usar el formulario avanzado -->
+                <a href="#" data-page-id="contacto" class="nav-link mt-4 inline-block bg-accent hover-accent text-white font-semibold py-2 px-6 rounded-full transition duration-300 shadow-lg">
+                    Reservar con el Formulario
+                </a>
+            </div>
+        </section>
+
+        <!-- =============================================== -->
+        <!-- 3. PÁGINA: SOBRE MÍ (NOSOTROS) -->
+        <!-- =============================================== -->
+        <section data-page="nosotros" class="page-content hidden py-12 mb-12 bg-white rounded-xl shadow-xl p-8">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6 primary-color">MI HISTORIA Y FILOSOFÍA</h2>
+            <p class="text-lg text-gray-600 mb-4">
+                Mi pasión por la estética comenzó hace 10 años, enfocándome en el arte de la mirada. Para mí, no se trata solo de aplicar extensiones o pigmentos, sino de entender la simetría y personalidad de cada cliente.
+            </p>
+            <h3 class="text-2xl font-semibold mt-8 mb-4 primary-color">Mi Compromiso Contigo</h3>
+            <ul class="list-disc list-inside text-gray-600 ml-4 space-y-2">
+                <li><span class="font-semibold">Calidad Premium:</span> Uso exclusivo de materiales hipoalergénicos y veganos.</li>
+                <li><span class="font-semibold">Formación Continua:</span> Siempre al día con las últimas tendencias y técnicas del mundo beauty.</li>
+                <li><span class="font-semibold">Diseño Personalizado:</span> Cada servicio incluye una consulta detallada para definir el look perfecto.</li>
+            </ul>
+        </section>
+
+        <!-- =============================================== -->
+        <!-- 4. PÁGINAS DE DISEÑO (CATÁLOGO) - Contenido igual al anterior para mantener los 3 slots -->
+        <!-- =============================================== -->
+
+        <!-- A. EXTENSIONES -->
+        <section data-page="sub_extensiones" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | EXTENSIONES</b></h2>
+            <p class="text-xl text-gray-500 mb-8">
+                Explora los diferentes estilos de extensiones que podemos lograr: volumen, largo y curvatura a tu medida.
+            </p>
+            <div id="extensiones-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- B. EFECTO FOXY -->
+        <section data-page="sub_efecto_foxy" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | EFECTO FOXY</b></h2>
+            <p class="text-xl text-gray-500 mb-8">Consigue una mirada alargada y seductora con nuestro exclusivo efecto foxy.</p>
+            <div id="efecto_foxy-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- C. EFECTO ANIME -->
+        <section data-page="sub_efecto_anime" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | EFECTO ANIME</b></h2>
+            <p class="text-xl text-gray-500 mb-8">Para un look audaz y llamativo, inspirado en la estética del anime.</p>
+            <div id="efecto_anime-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- D. EFECTO BRATZZ -->
+        <section data-page="sub_efecto_bratzz" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | EFECTO BRATZZ</b></h2>
+            <p class="text-xl text-gray-500 mb-8">El máximo volumen y dramatismo para una mirada de muñeca.</p>
+            <div id="efecto_bratzz-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- E. CEJAS -->
+        <section data-page="sub_cejas" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | CEJAS</b></h2>
+            <p class="text-xl text-gray-500 mb-8">
+                Creamos la forma ideal para enmarcar tu rostro. Servicios semipermanentes y temporales.
+            </p>
+            <div id="cejas-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        
+        <!-- G. LIFTING PREMIUM -->
+        <section data-page="sub_lifting" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | LIFTING PREMIUM</b></h2>
+            <p class="text-xl text-gray-500 mb-8">
+                Técnicas que rizan tus pestañas y reestructuran el pelo de tus cejas de forma natural.
+            </p>
+            <div id="lifting-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+        
+        <!-- F. UÑAS -->
+        <section data-page="sub_uñas" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4 primary-color"><b>CATÁLOGO | UÑAS</b></h2>
+            <p class="text-xl text-gray-500 mb-8">
+                Diseños creativos y cuidado profesional para tus manos.
+            </p>
+            <div id="uñas-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- H. PÁGINA DE BÚSQUEDA -->
+        <section data-page="buscar" class="page-content hidden py-16 bg-white rounded-xl shadow-2xl p-8 my-16">
+            <div id="search-results-header" class="mb-8">
+                <!-- El título de los resultados se insertará aquí -->
+            </div>
+            <div id="search-results-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Los resultados de la búsqueda se insertarán aquí -->
+            </div>
+        </section>
+        <!-- =============================================== -->
+        <!-- 5. PÁGINA: RESERVAR CITA (CONTACTO) -->
+        <!-- =============================================== -->
+        <section data-page="contacto" class="page-content hidden py-12 mb-12 bg-white rounded-xl shadow-xl p-8">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6 primary-color">RESERVA TU PRÓXIMA CITA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Columna Izquierda: Diseños Guardados y Formulario -->
+                <div>
+                    <!-- Sección para mostrar diseños guardados -->
+                    <div id="saved-designs-container" class="mb-8">
+                        <!-- El contenido se generará con JavaScript -->
+                    </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Formulario de Reserva Rápida</h3>
+                    <form id="booking-form" class="space-y-4">
+                        <input type="text" id="input-name" placeholder="Tu Nombre" class="w-full p-3 border border-gray-300 rounded-lg focus:primary-border focus:ring-1 focus:ring-teal-500" required>
+                        <input type="email" id="input-email" placeholder="Correo Electrónico (Opcional)" class="w-full p-3 border border-gray-300 rounded-lg focus:primary-border focus:ring-1 focus:ring-teal-500">
+                        <textarea id="input-message" placeholder="Día/Horario preferido, o consulta adicional" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:primary-border focus:ring-1 focus:ring-teal-500" required></textarea>
+                        
+                        <button type="submit" class="w-full bg-accent hover-accent text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
+                            Generar Mensaje para WhatsApp
+                        </button>
+                    </form>
+                    <p class="text-sm text-gray-500 mt-4 text-center">
+                        *Al hacer clic, se abrirá WhatsApp con el mensaje preescrito.
+                    </p>
+                </div>
+                </div>
+                <!-- Columna Derecha: Contacto Directo y Horarios -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Contacto Directo</h3>
+                    <p id="contact-whatsapp" class="text-gray-600 mb-2 font-bold"><!-- Llenado con JS --></p>
+                    <p id="contact-email" class="text-gray-600 mb-2"><!-- Llenado con JS --></p>
+                    <p class="text-gray-600">Dirección del Estudio: [Placeholder de Dirección Física]</p>
+                    <div class="mt-8">
+                         <h3 class="text-xl font-semibold mb-3">Horarios</h3>
+                         <p class="text-gray-600">Lun - Vie: 10:00 a 19:00</p>
+                         <p class="text-gray-600">Sábados: 10:00 a 14:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- FIN DEL CONTENEDOR PRINCIPAL -->
+
+    <!-- 6. Pie de Página (Footer) -->
+    <footer class="bg-gray-900 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white text-2xl script-font mb-4">BL-studio</p>
+            <p class="text-gray-400 text-sm">
+                © 2024 Estudio de Diseño de Belleza. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- 7. Modal para la Galería de Imágenes -->
+    <div id="gallery-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <!-- Contenedor principal del modal -->
+        <div class="bg-gray-900 bg-opacity-50 rounded-lg shadow-2xl max-w-4xl w-full max-h-full flex flex-col relative">
+            <!-- Botón para cerrar el modal -->
+            <button id="close-modal-button">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Contenedor de la imagen y navegación -->
+            <div id="modal-content" class="relative flex-grow flex items-center justify-center overflow-hidden p-4">
+                <!-- La imagen se insertará aquí con JavaScript -->
+                <img id="gallery-image" src="" alt="Foto de galería" class="max-h-[90vh] max-w-full object-contain rounded-lg">
+
+                <!-- Botón de Navegación: Anterior -->
+                <button id="prev-image-button" class="modal-nav-button left-0 ml-2 sm:ml-4">
+                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+
+                <!-- Botón de Navegación: Siguiente -->
+                <button id="next-image-button" class="modal-nav-button right-0 mr-2 sm:mr-4">
+                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Pantalla de Carga Global -->
+    <div id="loading-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <img src="/assets/carga.gif" alt="Cargando..." class="w-16 h-16">
+    </div>
+
+
+    <!-- Script de Navegación y Toggle de Menú Móvil -->
+    <script src="js/index.js"></script>
+</body>
+</html>

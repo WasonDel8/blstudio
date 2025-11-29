@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Lash Liftig con Nutrición y Tintura",
+        "description": "Maximiza la curvatura y el largo de tus pestañas naturales desde la raíz.",
+        "price": "$13000",
+        "images": [
+            "/assets/liffting/1/1.webp",
+            "/assets/liffting/1/2.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Laminado de Cejas con Perfilado, Nutricion e Hidratacion",
+        "description": "Fija el pelo de la ceja en una dirección ascendente para un look más poblado y ordenado.",
+        "price": "$9000",
+        "images": [
+            "/assets/liffting/2/1.webp",
+            "/assets/liffting/2/2.webp"
+        ]
+    }
+]

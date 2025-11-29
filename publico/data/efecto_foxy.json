@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "title": "Foxy Volumen",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$26500",
+        "images": [
+            "/assets/efecto-foxy/1/1.webp"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Foxy Rimel",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$28300",
+        "images": [
+            "/assets/efecto-foxy/2/1.webp",
+            "/assets/efecto-foxy/2/2.webp",
+            "/assets/efecto-foxy/2/3.webp"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Foxy Rendado",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$32000",
+        "images": [
+            "/assets/efecto-foxy/3/1.webp",
+            "/assets/efecto-foxy/3/2.webp"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Foxy Hollywood",
+        "description": "Descripción para el servicio de volumen clásico.",
+        "price": "$35000",
+        "images": [
+            "/assets/efecto-foxy/4/1.webp"
+        ]
+    }
+]

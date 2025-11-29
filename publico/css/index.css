@@ -1,0 +1,139 @@
+/* --- TIPOGRAFÍA --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Fuente Cursiva para Títulos y Logo */
+.script-font {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* --- PALETA DE COLORES: Fucsia, Dorado y Blanco --- */
+
+/* Color Primario: Fucsia (Fuchsia 600) */
+.primary-color { color: #c026d3; }
+.primary-bg { background-color: #c026d3; }
+.primary-hover:hover { background-color: #a21caf; }
+.primary-border { border-color: #c026d3; }
+
+/* Color de Acento (Llamada a la Acción): Dorado (Amber 400) */
+.text-accent { color: #facc15; }
+.bg-accent { background-color: #facc15; }
+.hover-accent:hover { background-color: #eab308; }
+
+/* --- COMPONENTES --- */
+
+/* Menú desplegable (dropdown) */
+.dropdown {
+    position: relative;
+}
+
+/* Estilos para la ventana modal de la galería */
+#gallery-modal {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Animación para las tarjetas del catálogo */
+.catalog-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.catalog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para la lista de diseños guardados en la página de contacto */
+.saved-design-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    margin-bottom: 0.5rem;
+}
+
+.remove-design-button {
+    background-color: #ef4444; /* red-500 */
+    color: white;
+    border-radius: 9999px;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-weight: bold;
+    line-height: 1.5rem; /* Centra la X verticalmente */
+}
+.remove-design-button:hover {
+    background-color: #dc2626; /* red-600 */
+}
+
+/* --- ESTILOS PARA ENLACE ACTIVO --- */
+
+/* Escritorio: Color de texto dorado y un poco más grueso */
+.nav-link.active-link {
+    color: #facc15; /* Color de acento (dorado) */
+    font-weight: 700;
+}
+
+/* Móvil: Fondo dorado con texto oscuro para contraste */
+.nav-link-mobile.active-link {
+    background-color: #facc15; /* Color de acento (dorado) */
+    color: #1f2937; /* gray-800 */
+}
+
+/* --- ESTILOS PARA EL NUEVO MODAL DE GALERÍA --- */
+#close-modal-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border-radius: 9999px;
+    padding: 0.25rem;
+    transition: background-color 0.2s;
+}
+#close-modal-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border-radius: 9999px;
+    padding: 0.5rem;
+    transition: background-color 0.2s;
+}
+.modal-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* --- ESTILOS PARA BOTÓN DE CARGA --- */
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- ESTILOS PARA EL BUSCADOR --- */
+.search-button {
+    background-color: #c026d3; /* primary-color */
+    color: white;
+}
+.search-button:hover {
+    background-color: #a21caf; /* primary-hover */
+}
