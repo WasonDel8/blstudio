@@ -49,65 +49,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const ACTIVE_CATEGORIES = Object.keys(CATEGORIES_CONFIG).filter(key => CATEGORIES_CONFIG[key].enabled);
 
     // --- 1. FUNCIÓN DE NAVEGACIÓN (SPA) ---
+    // Esta función ya no controla la pantalla de carga; solo carga datos y muestra la página correcta.
     async function showPage(pageId) {
-        loadingOverlay.classList.remove('hidden');
-
-        try {
-            // Si es una página de catálogo, carga su contenido dinámicamente
-            if (pageId.startsWith('sub_')) {
-                const category = pageId.substring(4); // ej: 'extensiones'
-                const containerId = `${category}-container`;
-                await loadCatalog(category, containerId);
-            }
-
-            pageContents.forEach(section => section.classList.add('hidden'));
-            const targetPage = document.querySelector(`[data-page="${pageId}"]`);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                if (pageId === 'contacto') {
-                    renderSavedDesigns();
-                }
-            }
-
-            // Actualiza el estilo del enlace activo
-            const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
-            navLinks.forEach(link => {
-                link.classList.toggle('active-link', link.getAttribute('data-page-id') === pageId);
-            });
-
-        } catch (error) {
-            console.error("Error al mostrar la página:", error);
-        } finally {
-            // Oculta la pantalla de carga, incluso si hay un error
-            loadingOverlay.classList.add('hidden');
+        // Si es una página de catálogo, carga su contenido dinámicamente
+        if (pageId.startsWith('sub_')) {
+            const category = pageId.substring(4); // ej: 'extensiones'
+            const containerId = `${category}-container`;
+            await loadCatalog(category, containerId);
         }
+
+        pageContents.forEach(section => section.classList.add('hidden'));
+        const targetPage = document.querySelector(`[data-page="${pageId}"]`);
+        if (targetPage) {
+            targetPage.classList.remove('hidden');
+            if (pageId === 'contacto') {
+                renderSavedDesigns();
+            }
+        }
+
+        // Actualiza el estilo del enlace activo
+        const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+        navLinks.forEach(link => {
+            link.classList.toggle('active-link', link.getAttribute('data-page-id') === pageId);
+        });
     }
 
-    // Nueva función para manejar el enrutamiento basado en el hash de la URL
+    // El router principal que ahora controla la pantalla de carga para toda la navegación.
     async function handleRouteChange() {
-        // Decodifica el hash para manejar correctamente caracteres especiales como 'ñ'
-        const pageId = decodeURIComponent(window.location.hash.substring(1));
+        loadingOverlay.classList.remove('hidden'); // Activa la carga al iniciar cualquier cambio de ruta.
 
-        // Si el modal está abierto y el hash cambia a algo que no es 'gallery', cierra el modal.
-        // Esto maneja el botón "atrás" del navegador.
-        if (galleryModal.classList.contains('hidden') === false && pageId !== 'gallery') {
-            closeModal(false); // Cierra sin manipular el historial
+        try {
+            // Decodifica el hash para manejar correctamente caracteres especiales como 'ñ'
+            const pageId = decodeURIComponent(window.location.hash.substring(1));
+
+            // Si el modal está abierto y el hash cambia a algo que no es 'gallery', cierra el modal.
+            if (galleryModal.classList.contains('hidden') === false && pageId !== 'gallery') {
+                closeModal(false); // Cierra sin manipular el historial
+            }
+
+            if (pageId.startsWith('buscar=')) {
+                const searchTerm = decodeURIComponent(pageId.substring(7));
+                await performSearch(searchTerm);
+            } else if (pageId === 'gallery') {
+                // No hace nada, el modal se gestiona por sí mismo.
+            } else {
+                // Si el hash está vacío o no corresponde a una página, se muestra 'inicio' por defecto.
+                const targetPage = document.querySelector(`[data-page="${pageId}"]`);
+                await showPage(targetPage ? pageId : 'inicio');
+            }
+        } catch (error) {
+            console.error("Error durante el cambio de ruta:", error);
+        } finally {
+            loadingOverlay.classList.add('hidden'); // Desactiva la carga al finalizar toda la operación.
         }
-
-        if (pageId.startsWith('buscar=')) {
-            const searchTerm = decodeURIComponent(pageId.substring(7));
-            await performSearch(searchTerm);
-            return; // La búsqueda maneja su propia visualización de página
-        }
-
-        // Si el hash es 'gallery', no hagas nada, deja que el modal se gestione por sí mismo.
-        if (pageId === 'gallery') {
-            return;
-        }
-
-        // Si el hash está vacío o no corresponde a una página, se muestra 'inicio' por defecto.
-        const targetPage = document.querySelector(`[data-page="${pageId}"]`);
-        await showPage(targetPage ? pageId : 'inicio');
     }
 
     // --- FUNCIÓN AUXILIAR PARA PRECARGAR IMÁGENES ---
@@ -394,23 +388,24 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
     });
 
     // --- NUEVA LÓGICA DE BÚSQUEDA ---
-
+    // Esta función ya no controla la pantalla de carga, solo se enfoca en buscar y renderizar.
     async function performSearch(term) {
-        loadingOverlay.classList.remove('hidden');
+        // 1. Asegura que la página de búsqueda esté visible
         await showPage('buscar');
 
+        // 2. Realiza la búsqueda en todos los catálogos activos
         try {
             const fetchPromises = ACTIVE_CATEGORIES.map(category => 
                 fetch(`data/${category}.json`).then(res => res.json())
             );
-            
+
             const allServicesData = await Promise.all(fetchPromises);
             let allResults = [];
             const lowerCaseTerm = term.toLowerCase();
 
             allServicesData.forEach((services, index) => {
                 const category = ACTIVE_CATEGORIES[index];
-                const filteredServices = services.filter(service => 
+                const filteredServices = services.filter(service =>
                     service.title.toLowerCase().includes(lowerCaseTerm) ||
                     service.description.toLowerCase().includes(lowerCaseTerm)
                 );
@@ -420,13 +415,11 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
                 allResults = allResults.concat(resultsWithCategory);
             });
 
+            // 3. Renderiza los resultados (esto incluye la precarga de imágenes)
             await renderSearchResults(allResults, term);
-
         } catch (error) {
             console.error("Error durante la búsqueda:", error);
             searchResultsContainer.innerHTML = `<p class="text-red-500 col-span-full">Ocurrió un error al realizar la búsqueda.</p>`;
-        } finally {
-            loadingOverlay.classList.add('hidden');
         }
     }
 
