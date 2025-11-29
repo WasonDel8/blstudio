@@ -496,7 +496,7 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
         ACTIVE_CATEGORIES.forEach(key => {
             const category = CATEGORIES_CONFIG[key];
             const pageId = `sub_${key}`;
-            desktopMenuHTML += `<a href="#" data-page-id="${pageId}" class="nav-link block px-4 py-3 text-sm text-gray-700 hover:bg-accent hover:text-gray-800 rounded-lg m-1 transition duration-150"><b>${category.name}</b></a>`;
+            desktopMenuHTML += `<a href="#${pageId}" data-page-id="${pageId}" class="nav-link block px-4 py-3 text-sm text-gray-700 hover:bg-accent hover:text-gray-800 rounded-lg m-1 transition duration-150"><b>${category.name}</b></a>`;
             mobileMenuHTML += `<a href="#" data-page-id="${pageId}" class="nav-link-mobile block px-6 py-1 text-base text-gray-600 hover:bg-accent hover:text-gray-800 rounded-md transition duration-150"><b>${category.name}</b></a>`;
         });
 
@@ -524,3 +524,4 @@ Por favor, confírmenme la disponibilidad. ¡Gracias!
 
     initializeSite();
 });
+
